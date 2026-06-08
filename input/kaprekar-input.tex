@@ -1,0 +1,65 @@
+\documentclass[11pt]{amsart}
+\usepackage{mathtools}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+Recall $6174$, Kaprekar's constant in base $10$.
+This problem is concerned with Kaprekar's routine for four-digit numbers
+in odd bases $B > 3$.
+
+Given a $4$-digit positive integer in an odd base $B$,
+let $a_1 \ge a_2 \ge a_3 \ge a_4$ denote its digits.
+Then the next Kaprekar iterate depends only on the two differences
+$d_1=a_1-a_4$ and $d_2=a_2-a_3$.
+Accordingly, we define a natural state space
+\[ X_B \coloneq \{(d_1,d_2):1\leq d_1<B,\ 0\leq d_2\leq d_1\}. \]
+The Kaprekar routine thus induces a map $K_B \colon X_B\to X_B$,
+sending each difference pair to the next difference pair.
+Note here we have excluded the trivial case $a_1 = a_2 = a_3 = a_4$ by requiring $d_1 \neq 0$.
+
+Define the subset
+\[ T_B \coloneq \{(d_1,d_2)\in X_B: d_1>d_2>0 \text{ and } d_1\equiv d_2\equiv1\pmod2\}. \]
+For $(d_1, d_2) \in T_B$, let $r = \frac{d_1 + d_2}{2}$ and $s = \frac{d_1 - d_2}{2}$.
+We then consider $r$ and $s$ as \emph{projective residue classes modulo $B$},
+where each residue is identified with its negative.
+Introduce the notation
+\[ P_B \coloneq \left( (\mathbb{Z}/B\mathbb{Z}) \setminus \{0\} \right) / \{\pm1\}  \]
+for the nonzero projective residue classes.
+For nonzero $x \in \mathbb{Z}/B\mathbb{Z}$, let $[x] \coloneq \{x,-x\} \subseteq P_B$
+denote the corresponding residue class in $P_B$.
+Finally, let $\binom{P_B}{2}$ denote the (unordered) two-element subsets of $P_B$.
+In this way, we have defined a map
+\[ \Phi \colon T_B \to \binom{P_B}{2} \qquad (d_1, d_2) \mapsto \{[r],[s]\}. \]
+
+\begin{theorem}\label{thm:structural}
+  Let $B > 3$ be odd.
+  We have $K_B(T_B) \subseteq T_B$ and $K_B^3(X_B)\subseteq T_B$.
+  Also, the map $\Phi$ is a bijection; moreover
+  the restricted map $K_B \colon T_B\to T_B$ is conjugate to the doubling map
+  \[ \binom{P_B}{2} \to \binom{P_B}{2} \qquad \{[r],[s]\} \mapsto \{[2r],[2s]\} \]
+  under $\Phi$.
+\end{theorem}
+
+Here, the term ``conjugate'' is defined as follows.
+Let $f \colon X\to X$ and $g \colon Y\to Y$ be maps.
+We say that $f$ and $g$ are \emph{conjugate} under the bijection
+$\Phi \colon X\to Y$ if
+\[ \Phi(f(x))=g(\Phi(x)) \qquad\text{for all }x\in X.  \]
+
+\begin{corollary}\label{cor:length}
+If $B>3$ is odd and $c_{\max}(B)$ is the largest terminal-cycle length for the
+four-digit Kaprekar map in base $B$, then we have
+\[ c_{\max}(B)\le \frac{B-1}{2}.  \]
+Moreover, equality holds if and only if $B \ge 7$, $B$ is prime,
+and the least positive solution to $2^m \equiv \pm 1 \pmod B$ is $m = \frac{B-1}{2}$.
+\end{corollary}
+
+\begin{corollary}\label{cor:prime}
+  If equality holds in the previous corollary,
+  then the number of terminal cycles of length $c_{\max}(p)$ is
+  \[ \left\lfloor\frac{c_{\max}(p)-1}{2}\right\rfloor.  \]
+\end{corollary}
+
+\end{document}
